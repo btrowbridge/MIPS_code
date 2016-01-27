@@ -2,7 +2,7 @@
 .data	#initialize to first three memory spaces
 	source_address: .word  0x10010040	#default to 0x10010000
 	dest_address: .word 0x10010080		#default to 0x10010004
-	length: .word 0x00000008		#default to 0x10010008
+	length: .word 0x00000004		#default to 0x10010008
 	
 	#moves memory at 0x10010040 to 0x10010080
 .text 
