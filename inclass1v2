@@ -1,0 +1,17 @@
+
+
+.text
+	lui $t0, 0x1001 #initial memory scope
+	
+	#load memory values
+	lh $s0, 0x20($t0)
+	lh $s1, 0x40($t0)
+	
+	bge $s0, $s1 s0_greater #compare $s0 > $s1
+	
+#s1 greater
+	sh $s1, 0x60($t0)
+	j end
+s0_greater:
+	sh $s0, 0x60($t0)
+end:
