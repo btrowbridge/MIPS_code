@@ -6,7 +6,7 @@
 #	
 #-------------------------------
 #
-#	Registry map in order of appearence:
+#	Registry map in order of appearance:
 #	
 #	$s0 - stores address of byte array
 #	$s1 - stores length
@@ -39,9 +39,14 @@
 	ori $s2,$s2 0x0028
 	lw $s2, 0($s2)
 	
-	#optional initializer for index
-	#ori $s3,$0
-
+	#optional initializers for index and counters
+	sub $s3,$s3,$s3
+	sub $t2,$t2,$t2
+	sub $t3,$t3,$t3
+	sub $t4,$t4,$t4
+	sub $t5,$t5,$t5
+	sub $t6,$t6,$t6
+	
 	j start
 	
 loop:	#post process increment
@@ -49,7 +54,7 @@ loop:	#post process increment
 	addi $s3,$s3,0x01 #index ++ (stored in $s3)
 
 	
-start:  #while ... do impplementation
+start:  #while ... do implementation
 	beq $s3,$s1,end   #if index == length then end
 
 	lbu $t0, 0($s0) #load byte
@@ -86,7 +91,7 @@ gt90: #greater than 90
 	addi $t6,$t6,0x01
 	j loop
 end:
-	#store bins to destination
+	#store counters to destination array
 	sb $t2, 0x00 ($s2)
 	sb $t3, 0x01 ($s2)
 	sb $t4, 0x02 ($s2)
